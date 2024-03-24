@@ -1,4 +1,4 @@
-from APIkeys import app_ID, app_Key
+from APIkeys import app_ID, app_Key, auth
 import requests
 from datetime import datetime
 
@@ -58,7 +58,11 @@ sheety_params = {
     }
 }
 
-sheety_response = requests.post(url=sheety_endpoint, json=sheety_params)
+sheety_headers = {
+    "Authorization": auth
+}
+
+sheety_response = requests.post(url=sheety_endpoint, json=sheety_params, headers=sheety_headers)
 # sheety_response.raise_for_status()
 data = sheety_response.json()
 print(data)
